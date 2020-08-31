@@ -46,6 +46,17 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'professor' => [
+            'driver' => 'session',
+            'provider' => 'professores',
+        ],
+
+        'professor' => [
+            'driver' => 'token',
+            'provider' => 'professores',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -75,6 +86,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'professores' => [
+            'driver' => 'eloquent',
+            'model' => App\Professor::class,
+        ],
     ],
 
     /*
@@ -95,6 +111,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'professores' => [
+            'provider' => 'professores',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

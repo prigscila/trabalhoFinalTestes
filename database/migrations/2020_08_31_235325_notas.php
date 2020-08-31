@@ -6,29 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 class Notas extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('Notas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('disciplina');
+            $table->float('valor');
             $table->string('descricao');
-            $table->float('nota');
+            $table->integer('disciplina_id')->unsigned();
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
             $table->integer('aluno_id')->unsigned();
             $table->foreign('aluno_id')->references('id')->on('alunos');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('Notas');

@@ -4,15 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Alunos extends Migration
+class Professores extends Migration
 {
     public function up()
     {
-        Schema::create('Alunos', function (Blueprint $table) {
+        Schema::create('Professores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('cpf');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('senha');
             $table->timestamps();
         });
@@ -20,6 +19,7 @@ class Alunos extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('Alunos');
+        Schema::dropIfExists('Professores');
     }
 }
+

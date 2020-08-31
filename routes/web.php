@@ -20,3 +20,7 @@ Route::get('/notas/apagar/{id}', 'NotasController@destroy');
 Route::get('/notas/editar/{id}', 'NotasController@edit');
 Route::post('/notas', 'NotasController@store');
 Route::post('/notas/{id}', 'NotasController@update');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

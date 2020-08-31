@@ -35,6 +35,14 @@
                 @endif>
                 <a class="nav-link" href="/notas">Notas</a>
             </li>
+            <li class="card-body">
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <a href="/login">{{ __('You are logged in!') }}</a>
+            </li>
         </ul>
     </div>
 </nav>
