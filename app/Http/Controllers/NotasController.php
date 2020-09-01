@@ -10,6 +10,11 @@ use App\CalculadorMedia;
 
 class NotasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $notas = Nota::all();
