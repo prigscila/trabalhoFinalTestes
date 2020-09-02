@@ -56,7 +56,7 @@ class NotasController extends Controller
     {
         $nota = Nota::find($id);
 
-        if (isset($aluno)) {
+        if (isset($nota)) {
             $nota->disciplina = $request->input('disciplina');
             $nota->descricao = $request->input('descricao');
             $nota->nota = $request->input('nota');
