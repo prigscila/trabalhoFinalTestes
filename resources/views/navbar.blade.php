@@ -28,14 +28,16 @@
                 @endif>
                 <a class="nav-link" href="/alunos">Alunos</a>
             </li>
-            <li 
-                @if($current=="notas") 
-                    class="nav-item active" 
-                @else 
-                    class="nav-item" 
-                @endif>
-                <a class="nav-link" href="/notas">Notas</a>
-            </li>
+            @if(Auth::user()->tipo == 1)
+                <li 
+                    @if($current=="notas") 
+                        class="nav-item active" 
+                    @else 
+                        class="nav-item" 
+                    @endif>
+                    <a class="nav-link" href="/notas">Notas</a>
+                </li>
+            @endif
             @endauth
         </ul>
         <ul class="navbar-nav ">

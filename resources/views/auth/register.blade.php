@@ -10,6 +10,9 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        @foreach( $errors->all() as $message )
+                            <div class="alert alert-danger" role="alert">{{ $message }}</div>
+                        @endforeach
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
@@ -58,6 +61,25 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="cpf" class="col-md-4 col-form-label text-md-right">{{ __('CPF') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cpf" type="cpf" class="form-control" name="cpf" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="cpf" class="col-md-4 col-form-label text-md-right">{{ __('Tipo') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="tipo" class="form-control" >
+                                    <option value=0>Aluno(a)</option>
+                                    <option value=1>Professor(a)</option>
+                                </select>
                             </div>
                         </div>
 

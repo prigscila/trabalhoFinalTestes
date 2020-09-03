@@ -23,9 +23,11 @@
                                 <td>{{$aluno->nome}}</td>
                                 <td>{{preg_replace("/(\d{3})(\d{3})(\d{3})(\d{2})/", "\$1.\$2.\$3-\$4", $aluno->cpf)}}</td>
                                 <td>
-                                    <a href="/alunos/ver/{{$aluno->id}}" class="btn btn-sm btn-outline-info">Visualizar</a>
-                                    <a href="/alunos/editar/{{$aluno->id}}" class="btn btn-sm btn-outline-success">Editar</a>
-                                    <a href="/alunos/apagar/{{$aluno->id}}" class="btn btn-sm btn-outline-danger">Apagar</a>
+                                    @if(Auth::user()->tipo == 1 || Auth::user()->cpf == $aluno->cpf)
+                                        <a href="/alunos/ver/{{$aluno->id}}" class="btn btn-sm btn-outline-info">Visualizar</a>
+                                        <a href="/alunos/editar/{{$aluno->id}}" class="btn btn-sm btn-outline-success">Editar</a>
+                                        <a href="/alunos/apagar/{{$aluno->id}}" class="btn btn-sm btn-outline-danger">Apagar</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -33,8 +35,10 @@
                 </table>
             @endif
             </div>
-        <div class="card-footer">
-            <a href="/alunos/novo" class="btn btn-sm btn-primary" role="button">Novo aluno</a>
-        </div>
+        @if(Auth::user()->tipo == 1)
+            <div class="card-footer">
+                <a href="/alunos/novo" class="btn btn-sm btn-primary" role="button">Novo aluno</a>
+            </div>
+        @endif
     </div>
 @endsection

@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Auth;
+use Closure;
 
-class Authenticate extends Middleware
+class AuthenticateWithProfessorAuth extends Middleware
 {
     /**
      * Get the path the user should be redirected to when they are not authenticated.
@@ -12,10 +14,13 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    protected function redirectTo($request)
+    public function handle($request, Closure $next)
     {
-        if (!$request->expectsJson()) {
-            return route('login');
+        $user = Auth::user();
+        if ($user->tipo == 0) {
+            return redirect()->route('login');
         }
+
+        return $next($request);
     }
 }
